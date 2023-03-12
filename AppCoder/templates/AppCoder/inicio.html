@@ -1,0 +1,25 @@
+{% extends "AppCoder/padre.html" %}
+{% load static %}
+{% block principal %}
+
+    <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
+    <h1>Buscar Doctor</h1>
+    <h3>Ingresar Código de Doctor:</h3>
+    <form action="/AppCoder/buscar/" method="GET">
+        <input type="number" name="codigo" id="codigo">
+        <input type="submit" value="Buscar">
+    </form>
+
+    {% if doctores %}
+    <p>Resultados de la búsqueda por código número: {{codigo}}</p>
+    <ul>
+	{% for doctor in doctores %}
+        <li> Código: {{doctor.codigo}} </li>
+        <li> Especialidad: {{doctor.especialidad}} </li>
+		<li> Nombre: {{doctor.nombre}} </li>
+		<li> Apellido: {{doctor.apellido}} </li>
+        <li> Email: {{doctor.email}} </li>
+	{% endfor %}
+    </ul>
+    {% endif %}
+{% endblock %}
